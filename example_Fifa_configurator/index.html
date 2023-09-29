@@ -12,7 +12,7 @@
     Press <b>F12</b> to see the results
 <br/><br/><br/><br/><br/>
     
-</div>
+
 <select class="form-select" id="teams" onchange="change_teams">
 </select>
 
@@ -45,10 +45,21 @@
     </tbody>
 </table>
 
+</div>
+<div class="container">
 <button type="button" onclick="on_addteam1()" class="btn btn-primary">Add Team 1</button>
 <button type="button" onclick="on_addteam2()" class="btn btn-primary">Add Team 2</button>
-<button type="button" onclick="on_clearselect()" class="btn btn-primary">Clear Select</button>
+<button type="button" onclick="on_clearselected()" class="btn btn-primary">Clear Select</button>
 
+  <table class="table">
+    <thead>
+      <th>Team1</th>
+      <th>Team2</th>
+    </thead>
+    <tbody id="table-team">
+    </tbody>
+  </table>
+</div>
 
 </div>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>

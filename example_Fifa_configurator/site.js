@@ -40,23 +40,49 @@ function on_addteam1(e)
 {
     if (!team1.includes(curr_target) || team2.includes(curr_target)) {
         team1.push(curr_target);
+        build_table();
     }
 }
 function on_addteam2(e)
 {
     if (!team2.includes(curr_target) || team1.includes(curr_target)) {
         team2.push(curr_target);
+        build_table();
     }
 }
 
-function on_clearselect(e)
-{
-    if (team1.includes(curr_target)) {
-        
+
+function build_table(e) {
+    tbody = document.getElementById("table-team");
+    // get the longest team
+    let longest = Math.max(team1.length, team2.length);
+    // clear the table
+    tbody.innerHTML = "";
+    // build the table
+    for (let i = 0; i < longest; i++) {
+        let row = tbody.insertRow();
+        let cell1 = row.insertCell();
+        let cell2 = row.insertCell();
+        if (i < team1.length) {
+            cell1.innerHTML = team1[i].Name;
+        }
+        if (i < team2.length) {
+            cell2.innerHTML = team2[i].Name;
+        }
     }
-    if (team2.includes(curr_target)) {
-    
-    }
+
+}
+
+function on_clearselected(e) {
+    pool = team1.filter(p => p == curr_target);
+    pool.forEach(p => {
+        team1.splice(team1.indexOf(p), 1);
+    });
+    pool = team2.filter(p => p == curr_target);
+    pool.forEach(p => {
+        team2.splice(team2.indexOf(p), 1);
+    });
+    build_table();    
 }
 
 //fill the teams option box with the team names

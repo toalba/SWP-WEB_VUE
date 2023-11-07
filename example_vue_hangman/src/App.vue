@@ -1,15 +1,13 @@
 <script setup>
-// import components here
+  import wordlist from './components/wordlist.vue'
 </script>
 
 <template>
   <header>
-    <div class="wrapper">
-        Hello HelloWorld
-    </div>
+    <h1>Hangman</h1>
   </header>
 
   <main>
-      this is vue
+      <wordlist />
   </main>
 </template>

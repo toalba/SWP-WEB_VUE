@@ -18,6 +18,8 @@ let game = {
         this.interval = setInterval(redraw, 20);
         this.intervalNewEnemy = setInterval(newEnemy, 600);
         this.intervalcollision = setInterval(control_collision,20);
+        this.starttime = Date.now();
+        this.timer = new Timer(this.starttime);
         this.player = new Player_image(35,35,10,120);
         collidable_objects.push(this.player);
         this.enemies = [];
@@ -40,7 +42,21 @@ let game = {
 function start() {
     console.log("Game started");
     game.start();
+}
 
+class Timer{
+    constructor(starttime){
+        this.starttime = starttime;
+        this.redraw();
+    }
+    redraw()
+    {
+        let seconds=Math.floor((Date.now()-this.starttime)/1000);
+        let minutes=Math.floor(seconds/60);
+        seconds%=60;
+        let ctx = game.context;
+        ctx.strokeText(minutes.toString().padStart(2,"0")+":"+seconds.toString().padStart(2,"0"),0,10);
+    }
 }
 
 
@@ -101,19 +117,19 @@ function redraw() {
   game.clear();
   game.player.x += 1;
   switch (game.keyCode) {
-   case 37: //left
-       game.player.x -= 2;
-      break;
-   case 38: //up
-       game.player.y -= 1;
-      break;
-   case 39: //right
+    case 37: //left
+        game.player.x -= 2;
+        break;
+    case 38: //up
+        game.player.y -= 1;
+        break;
+    case 39: //right
         game.player.x += 1;
-      break;
-   case 40: //down
-       game.player.y += 1;
-      break;
-}
+        break;
+    case 40: //down
+        game.player.y += 1;
+        break;
+    }
 
   game.player.redraw();
 
@@ -124,6 +140,7 @@ function redraw() {
        e.y += yDelta;
        e.redraw();
     })
+    game.timer.redraw();
 }
 
 function newEnemy()

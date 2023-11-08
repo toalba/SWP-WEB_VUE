@@ -122,5 +122,7 @@ export default{
                 </tr>
             </tbody>
         </table>
+
+        <p> If you want to cheat just press F12, LAME</p>
     </div>
 </template>

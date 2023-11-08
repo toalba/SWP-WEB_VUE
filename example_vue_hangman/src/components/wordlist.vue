@@ -11,14 +11,18 @@ export default{
             letters : Array.from(Array(26)).map((e, i) => String.fromCharCode(i + 65)),
             word: '',
             hiddenword: '',
-            highscorelist: [],
-            timertxt: ''
+            timertxt: '',
+            highscorelist: []
         }
     },
     mounted(){
         this.starttime = Date.now()
         this.highscorelist = JSON.parse(localStorage.getItem('highscorelist'));
-        this.start();
+        if(this.highscorelist == null)
+        {
+            this.highscorelist = []
+        }
+        this.getWord();
         this.showBlanks();
         this.redraw();
         setInterval(this.redraw, 1000);
@@ -30,7 +34,7 @@ export default{
         },
     },
     methods: {
-        start(){
+        getWord(){
             // pick a word
             this.word = this.WordList[Math.floor(Math.random() * this.WordList.length)];
             console.log(this.word)
@@ -60,9 +64,11 @@ export default{
                 this.hiddenword = str;
                 if (this.hiddenword.replace(/\s/g, '') == this.word) {
                     alert('You win!');
+                    this.highscorelist.push({'time':this.timertxt});
                     this.getWord();
                     this.showBlanks();
                     this.image = 'https://raw.githubusercontent.com/jlbooker/hangman/master/img/hang0.gif';
+                    this.starttime = Date.now();
                     return;
                 }
             }
@@ -103,5 +109,18 @@ export default{
         <img :src="image" alt="hangman" />
         <div class="btn-group" role="group"></div>
         <button :id="letter" type="button" class="btn btn-primary" @click="usechar" v-for="letter in letters">{{ letter }}</button>
+        <h2>Highscore</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Time</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="score in this.highscorelist">
+                    <td>{{ score.time }}</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </template>

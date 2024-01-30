@@ -1,5 +1,5 @@
 <script>
-import {api_search} from './flask-connection.js';
+import {api_search,api_patch} from './flask-connection.js';
 export default {
   name: 'searchbar',
   components: {
@@ -22,6 +22,10 @@ export default {
         r.description = r.description.replace(this.searchword, '<b>' + this.searchword + '</b>');
       });
     },
+    async updatedescription(e) {
+      this.res = await api_patch(e);
+        console.log(this.res);
+    },
     getImgUrl(pet) {
       return 'http://webapp.uibk.ac.at/ubi/cat/' + pet;
     }
@@ -39,8 +43,8 @@ export default {
       <td><span v-html="r.description"></span></td>
       <td><img :src="getImgUrl(r.thumb)"></td>
       <td>
-        <input type="text" :value="r.description">
-        <button class="btn btn-success">Change</button>
+        <input type="text" v-model="r.updatedescription">
+        <button class="btn btn-success" @click="updatedescription(r)">Change</button>
       </td>
     </tr>
   </table>

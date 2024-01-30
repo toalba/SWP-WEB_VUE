@@ -1,6 +1,31 @@
 <script setup>
-  import datagrid from './components/datagrid.vue'
+import PlotlyDark from './components/darktheme_chart.vue';
 </script>
+
+<script>
+export default {
+  components: {
+    datagrid
+  },
+  data() {
+    return {
+      data: [
+        {
+          x: [1, 2, 3],
+          y: [2, 6, 3],
+          type: 'scatter'
+        },
+        {
+          x: [1, 2, 3],
+          y: [2, 5, 3],
+          type: 'scatter'
+        }
+      ]
+    }
+  }
+}
+</script>
+
 
 <template>
   <header>
@@ -8,6 +33,6 @@
   </header>
 
   <main>
-      <datagrid />
+      <PlotlyDark :data="data" />
   </main>
 </template>

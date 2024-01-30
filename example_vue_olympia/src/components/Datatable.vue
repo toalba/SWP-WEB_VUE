@@ -1,5 +1,9 @@
 <script>
 export default {
+    name: 'datagrid',
+    components: {
+        DataTable
+    },
     props: {
         datacolumns: {
             type: Array,

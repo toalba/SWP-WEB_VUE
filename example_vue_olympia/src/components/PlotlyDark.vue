@@ -22,26 +22,36 @@ export default {
             type: String,
             default: ''
         },
+        layout: {
+            type: Object
+        }
     },
+    mounted() {
+        let darkmode = {
+            paper_bgcolor: '#343a40',
+            plot_bgcolor: '#212529',
+            font: {
+                family: 'Courier New, monospace',
+                color: '#dee2e6'
+            }
+        }
+        this.pltlayout = Object.assign(this.pltlayout, darkmode)
+        this.pltlayout = Object.assign(this.pltlayout, this.layout)
+    },
+
     data() {
         return {
-            data: this.data,
-            layout: {
+            pltdata: this.data,
+            pltlayout: {
                 width: this.width,
                 height: this.height,
                 title: this.title,
-                showlegend: true,
-                paper_bgcolor: '#343a40',
-                plot_bgcolor: '#212529',
-                font: {
-                    family: 'Courier New, monospace',
-                    color: '#dee2e6'
-                }
-            },
+            }
         }
     }
 }
 </script>
 <template>
-<VuePlotly :data="data" :layout="layout"></VuePlotly>
+<VuePlotly :data="pltdata" :layout="pltlayout"></VuePlotly>
+<span v-if="layout">{{pltlayout}}</span>
 </template>

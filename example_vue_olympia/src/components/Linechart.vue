@@ -1,3 +1,6 @@
+<template>
+    <PlotlyDark :data="data" :layout="layout" />
+</template>
 <script>
 import PlotlyDark from './PlotlyDark.vue';
 export default {
@@ -26,6 +29,3 @@ export default {
 }
 </script>
 
-<template>
-    <PlotlyDark :data="data" :layout="layout" />
-</template>

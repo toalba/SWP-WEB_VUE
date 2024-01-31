@@ -22,7 +22,7 @@ export default {
     return {
       pltdata: [trace1, trace2],
       layout: {
-        barmode: 'stack'
+        barmode: 'group'
       }
     }
   }

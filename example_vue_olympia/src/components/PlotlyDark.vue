@@ -1,3 +1,8 @@
+<template>
+    <VuePlotly :data="pltdata" :layout="pltlayout"></VuePlotly>
+    <span hidden v-if="layout">{{pltlayout}}</span>
+</template>
+
 <script>
 import {VuePlotly} from 'vue3-plotly';
 export default {
@@ -53,7 +58,3 @@ export default {
     }
 }
 </script>
-<template>
-<VuePlotly :data="pltdata" :layout="pltlayout"></VuePlotly>
-<span v-if="layout">{{pltlayout}}</span>
-</template>

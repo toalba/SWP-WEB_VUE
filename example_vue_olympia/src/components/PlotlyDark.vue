@@ -35,7 +35,9 @@ export default {
                 color: '#dee2e6'
             }
         }
-        this.pltlayout = Object.assign(this.pltlayout, darkmode)
+        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            this.pltlayout = Object.assign(this.pltlayout, darkmode)
+        }
         this.pltlayout = Object.assign(this.pltlayout, this.layout)
     },
 

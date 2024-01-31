@@ -1,7 +1,7 @@
 <script>
 import PlotlyDark from './PlotlyDark.vue';
 export default {
-    name: 'BarChart',
+    name: 'LineChart',
     components: {
     PlotlyDark
     },
@@ -19,7 +19,7 @@ export default {
             data: {
                 x: this.dataarr.x,
                 y: this.dataarr.y,
-                type: 'bar'
+                type: 'lines'
             }
         }
     }

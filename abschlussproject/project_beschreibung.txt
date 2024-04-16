@@ -1,0 +1,1 @@
+Mihilfe von vue-drawing-canvas (https://github.com/razztyfication/vue-drawing-canvas) soll ein interface gebaut werden um mit dem handmodel(AI) zeichnen zu können. 
